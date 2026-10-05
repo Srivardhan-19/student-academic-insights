@@ -183,3 +183,38 @@ Srivardhan
 ## License
 
 This project is intended for educational and academic use.
+
+## Installation
+
+### Option 1: Download from GitHub
+
+1. Open the GitHub repository:
+
+   https://github.com/Srivardhan-19/student-academic-insights
+
+2. Click the green **Code** button.
+
+3. Select **Download ZIP**.
+
+4. Extract the downloaded ZIP file.
+
+5. Open Google Chrome and go to:
+
+   chrome://extensions/
+
+6. Enable **Developer mode**.
+
+7. Click **Load unpacked**.
+
+8. Select the extracted project folder containing:
+
+   manifest.json
+
+9. Open the IIIT Kurnool AIMS Course History page.
+
+10. The **Student Academic Insights** dashboard will appear automatically.
+
+### Option 2: Clone using Git
+
+```bash
+git clone https://github.com/Srivardhan-19/student-academic-insights.git
