@@ -17,6 +17,18 @@
         "U": 0
     };
 
+    const gradeCounts = {
+        "S": 0,
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "E": 0,
+        "E.": 0,
+        "U": 0
+    };
+
+
     function startCalculator() {
 
         if (document.getElementById("iiitk-cgpa-extension")) {
@@ -53,6 +65,7 @@
         calculateCGPA(semesterElements);
     }
 
+
     function calculateCGPA(semesterElements) {
 
         let semesters = [];
@@ -61,6 +74,7 @@
         let totalPoints = 0;
 
         let hasIncompleteHistoricalSemester = false;
+
 
         semesterElements.forEach(function (semester) {
 
@@ -79,16 +93,19 @@
 
             let missingRequiredGrade = false;
 
+
             const rows =
                 semester.querySelectorAll(
                     "li.tab_body_bg"
                 );
+
 
             rows.forEach(function (row) {
 
                 if (!row) {
                     return;
                 }
+
 
                 const codeElement =
                     row.querySelector(".col1");
@@ -97,8 +114,10 @@
                     return;
                 }
 
+
                 const code =
                     codeElement.innerText.trim();
+
 
                 const titleElement =
                     row.querySelector(".col2");
@@ -109,12 +128,15 @@
                 const gradeElement =
                     row.querySelector(".col8");
 
+
                 const title =
                     titleElement
                         ? titleElement.innerText.trim()
                         : "";
 
+
                 let credits = 0;
+
 
                 if (creditsElement) {
 
@@ -124,11 +146,14 @@
                         );
                 }
 
+
                 if (isNaN(credits)) {
                     credits = 0;
                 }
 
+
                 registeredCredits += credits;
+
 
                 const grade =
                     gradeElement
@@ -137,11 +162,30 @@
                             .toUpperCase()
                         : "";
 
+
                 courseCount++;
+
 
                 if (grade !== "") {
                     visibleGradeCount++;
                 }
+
+
+                /*
+                 * Grade Distribution
+                 *
+                 * E and E. are counted separately.
+                 * Blank grades are ignored.
+                 */
+
+                if (grade !== "") {
+
+                    if (gradeCounts[grade] !== undefined) {
+
+                        gradeCounts[grade]++;
+                    }
+                }
+
 
                 if (
                     grade === "" &&
@@ -151,12 +195,14 @@
                     missingRequiredGrade = true;
                 }
 
+
                 courses.push({
                     code: code,
                     title: title,
                     credits: credits,
                     grade: grade
                 });
+
 
                 if (
                     grade !== "" &&
@@ -171,12 +217,16 @@
                     semesterCredits += credits;
                     semesterPoints += points;
                 }
+
             });
+
 
             const isComplete =
                 !missingRequiredGrade;
 
+
             let sgpa = null;
+
 
             if (
                 isComplete &&
@@ -187,6 +237,7 @@
                     semesterPoints /
                     semesterCredits;
             }
+
 
             semesters.push({
 
@@ -213,15 +264,20 @@
                 complete:
                     isComplete
             });
+
         });
 
+
         semesters.reverse();
+
 
         semesters.forEach(function (semester, index) {
 
             semester.semester =
                 index + 1;
+
         });
+
 
         const currentSemester =
             semesters.length > 0
@@ -229,6 +285,7 @@
                     semesters.length - 1
                 ]
                 : null;
+
 
         if (currentSemester) {
 
@@ -242,8 +299,11 @@
                     hasIncompleteHistoricalSemester =
                         true;
                 }
+
             });
+
         }
+
 
         if (!hasIncompleteHistoricalSemester) {
 
@@ -268,10 +328,14 @@
                     totalPoints +=
                         semester.points;
                 }
+
             });
+
         }
 
+
         let cgpa = null;
+
 
         if (
             !hasIncompleteHistoricalSemester &&
@@ -283,15 +347,18 @@
                 totalCredits;
         }
 
+
         console.log(
             "[Student Academic Insights] Total Credits:",
             totalCredits
         );
 
+
         console.log(
             "[Student Academic Insights] Total Points:",
             totalPoints
         );
+
 
         console.log(
             "[Student Academic Insights] CGPA:",
@@ -299,6 +366,13 @@
                 ? cgpa.toFixed(2)
                 : "Not calculated"
         );
+
+
+        console.log(
+            "[Student Academic Insights] Grade Counts:",
+            gradeCounts
+        );
+
 
         createDashboard(
 
@@ -314,9 +388,13 @@
 
             hasIncompleteHistoricalSemester,
 
-            currentSemester
+            currentSemester,
+
+            gradeCounts
         );
+
     }
+
 
     function createDashboard(
         cgpa,
@@ -324,12 +402,14 @@
         totalPoints,
         semesters,
         hasIncompleteHistoricalSemester,
-        currentSemester
+        currentSemester,
+        gradeCounts
     ) {
 
         console.log(
             "[Student Academic Insights] Creating dashboard"
         );
+
 
         if (
             document.getElementById(
@@ -339,13 +419,17 @@
             return;
         }
 
+
         const dashboard =
             document.createElement("div");
+
 
         dashboard.id =
             "iiitk-cgpa-extension";
 
+
         let html = "";
+
 
         html += `
             <div class="cgpa-header">
@@ -369,6 +453,7 @@
             </div>
         `;
 
+
         if (hasIncompleteHistoricalSemester) {
 
             html += `
@@ -391,7 +476,9 @@
 
                 </div>
             `;
+
         }
+
 
         html += `
             <div class="cgpa-summary">
@@ -453,6 +540,7 @@
             </div>
         `;
 
+
         html += `
             <div class="semester-section">
 
@@ -489,9 +577,11 @@
                     <tbody>
         `;
 
+
         semesters.forEach(function (semester) {
 
             let semesterStatus = "";
+
 
             if (
                 semester === currentSemester &&
@@ -503,7 +593,9 @@
                         Ongoing
                     </span>
                 `;
+
             }
+
 
             html += `
                 <tr>
@@ -552,7 +644,9 @@
 
                 </tr>
             `;
+
         });
+
 
         html += `
                     </tbody>
@@ -562,57 +656,102 @@
             </div>
         `;
 
+
+        /*
+         * Grade Distribution
+         */
+
         html += `
-            <div class="cgpa-validation">
+            <div class="grade-distribution">
 
                 <h3>
-                    Semester Status
+                    Grade Distribution
                 </h3>
+
+                <div class="grade-list">
         `;
 
-        semesters.forEach(function (semester) {
 
-            let statusText = "";
+        const grades = [
+            "S",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "E.",
+            "U"
+        ];
 
-            if (semester.complete) {
 
-                statusText =
-                    "Complete";
+        let maximumGradeCount = 0;
 
-            } else {
 
-                if (
-                    semester === currentSemester
-                ) {
+        grades.forEach(function (grade) {
 
-                    statusText =
-                        "Ongoing";
+            if (
+                gradeCounts[grade] >
+                maximumGradeCount
+            ) {
 
-                } else {
-
-                    statusText =
-                        "Required grade missing";
-                }
+                maximumGradeCount =
+                    gradeCounts[grade];
             }
 
+        });
+
+
+        grades.forEach(function (grade) {
+
+            const count =
+                gradeCounts[grade];
+
+
+            let barWidth = 0;
+
+
+            if (maximumGradeCount > 0) {
+
+                barWidth =
+                    (count /
+                    maximumGradeCount) *
+                    100;
+
+            }
+
+
             html += `
-                <div class="validation-row">
+                <div class="grade-row">
 
-                    <span>
-                        Semester ${semester.semester}
-                    </span>
+                    <div class="grade-label">
+                        ${grade}
+                    </div>
 
-                    <span>
-                        ${statusText}
-                    </span>
+                    <div class="grade-bar-container">
+
+                        <div
+                            class="grade-bar"
+                            style="width: ${barWidth}%"
+                        ></div>
+
+                    </div>
+
+                    <div class="grade-count">
+                        ${count}
+                    </div>
 
                 </div>
             `;
+
         });
 
+
         html += `
+                </div>
+
             </div>
         `;
+
 
         html += `
             <div class="cgpa-footer">
@@ -631,17 +770,21 @@
             </div>
         `;
 
+
         dashboard.innerHTML =
             html;
+
 
         document.body.appendChild(
             dashboard
         );
 
+
         const closeButton =
             document.getElementById(
                 "cgpa-close"
             );
+
 
         if (closeButton) {
 
@@ -653,32 +796,40 @@
 
                 }
             );
+
         }
+
 
         console.log(
             "[Student Academic Insights] Dashboard added"
         );
+
     }
+
 
     let attempts = 0;
 
     const maxAttempts = 30;
+
 
     const waitForData =
         setInterval(function () {
 
             attempts++;
 
+
             const semesters =
                 document.querySelectorAll(
                     "#courseHistoryUI ul.subCnt"
                 );
+
 
             console.log(
                 "[Student Academic Insights] " +
                 "Checking semesters:",
                 semesters.length
             );
+
 
             if (semesters.length > 0) {
 
@@ -687,7 +838,9 @@
                 );
 
                 startCalculator();
+
             }
+
 
             if (
                 attempts >= maxAttempts
@@ -697,12 +850,15 @@
                     waitForData
                 );
 
+
                 console.log(
                     "[Student Academic Insights] " +
                     "Timed out waiting for course data"
                 );
+
             }
 
         }, 500);
 
 })();
+

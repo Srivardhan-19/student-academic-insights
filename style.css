@@ -637,3 +637,163 @@
    CARDS
    #FFFFFF
    ========================================================= */
+   /* =========================================================
+   9. GRADE DISTRIBUTION
+   ========================================================= */
+
+.grade-distribution {
+    margin: 0 13px 13px 13px !important;
+
+    background: #FFFFFF !important;
+
+    border: 1px solid #C8C0E8 !important;
+
+    border-radius: 10px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 3px 9px rgba(131, 115, 205, 0.14) !important;
+}
+
+
+/* =========================================================
+   GRADE DISTRIBUTION HEADER
+   ========================================================= */
+
+.grade-distribution h3 {
+    margin: 0 !important;
+
+    padding: 11px 12px !important;
+
+    background: #EDE9FA !important;
+
+    color: #5B4FA3 !important;
+
+    border-bottom: 1px solid #D5CEF0 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   GRADE LIST
+   ========================================================= */
+
+.grade-list {
+    padding: 9px 10px !important;
+
+    background: #FAF9FE !important;
+}
+
+
+/* =========================================================
+   INDIVIDUAL GRADE ROW
+   ========================================================= */
+
+.grade-row {
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 100% !important;
+
+    min-height: 25px !important;
+
+    margin: 3px 0 !important;
+
+    padding: 2px 5px !important;
+
+    border-radius: 5px !important;
+}
+
+
+/* =========================================================
+   GRADE LABEL
+   ========================================================= */
+
+.grade-label {
+    width: 28px !important;
+
+    flex-shrink: 0 !important;
+
+    color: #51478F !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+
+    text-align: left !important;
+}
+
+
+/* =========================================================
+   BAR CONTAINER
+   ========================================================= */
+
+.grade-bar-container {
+    flex: 1 !important;
+
+    height: 12px !important;
+
+    margin: 0 8px !important;
+
+    background: #E8E4F6 !important;
+
+    border: 1px solid #D5CEF0 !important;
+
+    border-radius: 6px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   GRADE BAR
+   ========================================================= */
+
+.grade-bar {
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    background: #8373CD !important;
+
+    border-radius: 6px !important;
+
+    transition: width 0.3s ease !important;
+}
+
+
+/* =========================================================
+   GRADE COUNT
+   ========================================================= */
+
+.grade-count {
+    width: 24px !important;
+
+    flex-shrink: 0 !important;
+
+    color: #51478F !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700 !important;
+
+    text-align: right !important;
+}
+
+
+/* =========================================================
+   GRADE ROW HOVER
+   ========================================================= */
+
+.grade-row:hover {
+    background: #F0EDFB !important;
+}
+
+.grade-row:hover .grade-bar {
+    background: #6F5DB5 !important;
+}
