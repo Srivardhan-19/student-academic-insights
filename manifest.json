@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "IIIT Kurnool CGPA Calculator",
+    "name": "Student Academic Insights",
     "version": "1.0.0",
     "description": "Calculates SGPA and CGPA from the IIIT Kurnool AIMS Course History page.",
 
