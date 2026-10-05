@@ -1,24 +1,35 @@
+/* =========================================================
+   STUDENT ACADEMIC INSIGHTS
+   BRIGHT ACADEMIC DASHBOARD
+   ========================================================= */
+
+
+/* =========================================================
+   MAIN PANEL
+   ========================================================= */
+
 #iiitk-cgpa-extension {
     position: fixed !important;
     top: 80px !important;
-    right: 30px !important;
+    right: 20px !important;
 
-    width: 500px !important;
-    max-height: 80vh !important;
-
+    width: 340px !important;
+    max-height: 85vh !important;
     overflow-y: auto !important;
 
-    background: #ffffff !important;
-    color: #222222 !important;
+    background: #F5F9FF !important;
+    color: #172B4D !important;
 
-    border: 1px solid #dddddd !important;
-    border-radius: 12px !important;
+    border: 1px solid #9CC8EA !important;
+    border-radius: 15px !important;
 
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.20) !important;
+    box-shadow:
+        0 12px 35px rgba(23, 59, 103, 0.25) !important;
 
     z-index: 2147483647 !important;
 
     font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
 
     display: block !important;
     visibility: visible !important;
@@ -27,163 +38,602 @@
     box-sizing: border-box !important;
 }
 
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
 #iiitk-cgpa-extension * {
     box-sizing: border-box !important;
 }
 
-#iiitk-cgpa-extension .cgpa-header {
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+#iiitk-cgpa-extension::-webkit-scrollbar {
+    width: 7px !important;
+}
+
+#iiitk-cgpa-extension::-webkit-scrollbar-track {
+    background: #E8F2FC !important;
+}
+
+#iiitk-cgpa-extension::-webkit-scrollbar-thumb {
+    background: #58A9DD !important;
+    border-radius: 10px !important;
+}
+
+#iiitk-cgpa-extension::-webkit-scrollbar-thumb:hover {
+    background: #1769AA !important;
+}
+
+
+/* =========================================================
+   1. HEADER
+   ========================================================= */
+
+.cgpa-header {
     display: flex !important;
+    align-items: flex-start !important;
     justify-content: space-between !important;
-    align-items: center !important;
 
-    padding: 20px 22px !important;
+    padding: 17px !important;
 
-    border-bottom: 1px solid #eeeeee !important;
+    background: #173B67 !important;
+    color: #FFFFFF !important;
+
+    border-radius: 14px 14px 0 0 !important;
+
+    border-bottom: 4px solid #2496D2 !important;
 }
 
-#iiitk-cgpa-extension .cgpa-header h2 {
+.cgpa-header h2 {
     margin: 0 !important;
     padding: 0 !important;
 
-    font-size: 22px !important;
-    color: #222222 !important;
+    color: #FFFFFF !important;
+
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+
+    font-weight: 700 !important;
 }
 
-#iiitk-cgpa-extension .cgpa-header p {
+.cgpa-header p {
     margin: 5px 0 0 0 !important;
+    padding: 0 !important;
 
-    color: #777777 !important;
-    font-size: 13px !important;
+    color: #D7E9F8 !important;
+
+    font-size: 11px !important;
+    line-height: 1.4 !important;
 }
 
-#iiitk-cgpa-extension #cgpa-close {
-    width: auto !important;
-    height: auto !important;
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+#cgpa-close {
+    width: 29px !important;
+    height: 29px !important;
 
     padding: 0 !important;
     margin: 0 !important;
 
-    border: none !important;
+    border: 1px solid #6DA6D1 !important;
+    border-radius: 7px !important;
 
-    background: transparent !important;
+    background: #28557F !important;
 
-    font-size: 28px !important;
-    line-height: 1 !important;
+    color: #FFFFFF !important;
+
+    font-size: 20px !important;
+    line-height: 27px !important;
+
+    text-align: center !important;
 
     cursor: pointer !important;
-
-    color: #666666 !important;
 }
 
-#iiitk-cgpa-extension .cgpa-summary {
+#cgpa-close:hover {
+    background: #E53935 !important;
+    border-color: #FF7777 !important;
+}
+
+
+/* =========================================================
+   2. WARNING
+   ========================================================= */
+
+.cgpa-warning {
+    margin: 13px !important;
+    padding: 12px !important;
+
+    background: #FFF0F1 !important;
+
+    border: 1px solid #FFB3B8 !important;
+    border-left: 5px solid #E53935 !important;
+
+    border-radius: 9px !important;
+
+    color: #B71C1C !important;
+
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+}
+
+.cgpa-warning strong {
+    display: block !important;
+
+    margin-bottom: 6px !important;
+
+    color: #C62828 !important;
+
+    font-size: 12px !important;
+}
+
+.cgpa-warning p {
+    margin: 4px 0 !important;
+}
+
+
+/* =========================================================
+   3. SUMMARY AREA
+   ========================================================= */
+
+.cgpa-summary {
     display: grid !important;
 
-    grid-template-columns: 1.2fr 1fr 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
 
-    gap: 12px !important;
+    gap: 9px !important;
 
-    padding: 18px !important;
+    padding: 13px !important;
+
+    background: #EAF4FF !important;
 }
 
-#iiitk-cgpa-extension .cgpa-card {
-    background: #f5f5f5 !important;
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.cgpa-card {
+    min-width: 0 !important;
+
+    padding: 11px !important;
+
+    background: #FFFFFF !important;
+
+    border: 1px solid #A9D2EF !important;
 
     border-radius: 10px !important;
 
-    padding: 15px !important;
-
     text-align: center !important;
+
+    box-shadow:
+        0 2px 7px rgba(23, 105, 170, 0.10) !important;
 }
 
-#iiitk-cgpa-extension .cgpa-card span {
+
+/* =========================================================
+   CGPA CARD
+   ========================================================= */
+
+.cgpa-card.main-card {
+    grid-column: 1 / -1 !important;
+
+    padding: 16px !important;
+
+    background: #FFFFFF !important;
+
+    border: 1px solid #77B9E7 !important;
+
+    border-top: 5px solid #F9D99F !important;
+
+    border-radius: 11px !important;
+
+    box-shadow:
+        0 3px 10px rgba(36, 150, 210, 0.18) !important;
+}
+
+.cgpa-card span {
     display: block !important;
+
+    margin-bottom: 5px !important;
+
+    color: #315A7D !important;
+
+    font-size: 10px !important;
+    font-weight: 700 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: 0.6px !important;
+}
+
+.cgpa-card strong {
+    display: block !important;
+
+    color: #173B67 !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.2 !important;
+}
+
+.cgpa-card.main-card strong {
+    color: #1769AA !important;
+
+    font-size: 38px !important;
+
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+   CGPA
+   ========================================================= */
+
+.cgpa-summary .cgpa-card:nth-child(1) {
+    border-top: 5px solid #F9D99F !important;
+}
+
+.cgpa-summary .cgpa-card:nth-child(1) strong {
+    color: #efb344 !important;
+}
+
+
+
+/* =========================================================
+   TOTAL CREDITS
+   ========================================================= */
+
+.cgpa-summary .cgpa-card:nth-child(2) {
+    border-top: 5px solid #2496D2 !important;
+}
+
+.cgpa-summary .cgpa-card:nth-child(2) strong {
+    color: #1769AA !important;
+}
+
+/* =========================================================
+   GRADE POINTS
+   ========================================================= */
+
+.cgpa-card:not(.main-card):last-of-type {
+    border-top: 4px solid #159A9C !important;
+}
+
+.cgpa-card:not(.main-card):last-of-type strong {
+    color: #159A9C !important;
+}
+
+
+/* =========================================================
+   4. SEMESTER PERFORMANCE
+   ========================================================= */
+
+.semester-section {
+    margin: 0 13px 13px 13px !important;
+
+    background: #FFFFFF !important;
+
+    border: 1px solid #7FD6D1 !important;
+
+    border-radius: 10px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 3px 9px rgba(21, 154, 156, 0.12) !important;
+}
+
+.semester-section h3 {
+    margin: 0 !important;
+
+    padding: 11px 12px !important;
+
+    background: #C9F1EE !important;
+
+    color: #096B6E !important;
+
+    border-bottom: 1px solid #86DAD5 !important;
 
     font-size: 12px !important;
 
-    color: #777777 !important;
-
-    margin-bottom: 8px !important;
+    font-weight: 700 !important;
 }
 
-#iiitk-cgpa-extension .cgpa-card strong {
-    display: block !important;
 
-    font-size: 25px !important;
+/* =========================================================
+   SEMESTER TABLE
+   ========================================================= */
 
-    color: #222222 !important;
-}
-
-#iiitk-cgpa-extension .main-card {
-    background: #e8f3ed !important;
-}
-
-#iiitk-cgpa-extension .main-card strong {
-    font-size: 32px !important;
-}
-
-#iiitk-cgpa-extension .semester-section {
-    padding: 0 18px 18px 18px !important;
-}
-
-#iiitk-cgpa-extension .semester-section h3 {
-    margin: 5px 0 12px 0 !important;
-
-    font-size: 17px !important;
-
-    color: #222222 !important;
-}
-
-#iiitk-cgpa-extension table {
+.semester-section table {
     width: 100% !important;
 
     border-collapse: collapse !important;
 
-    font-size: 13px !important;
-
-    color: #222222 !important;
+    table-layout: fixed !important;
 }
 
-#iiitk-cgpa-extension th {
+.semester-section th {
+    padding: 8px 4px !important;
+
+    background: #E5FAF8 !important;
+
+    color: #176C70 !important;
+
+    border-bottom: 1px solid #B9E8E4 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 700 !important;
+
+    text-align: center !important;
+}
+
+.semester-section td {
+    padding: 9px 4px !important;
+
+    color: #243B53 !important;
+
+    border-bottom: 1px solid #E2EBF2 !important;
+
+    font-size: 10px !important;
+
+    text-align: center !important;
+
+    word-break: break-word !important;
+}
+
+
+/* Alternating rows */
+
+.semester-section tbody tr:nth-child(odd) {
+    background: #FFFFFF !important;
+}
+
+.semester-section tbody tr:nth-child(even) {
+    background: #F3FAFA !important;
+}
+
+
+/* Hover */
+
+.semester-section tbody tr:hover {
+    background: #DFF8F6 !important;
+}
+
+
+/* Column widths */
+
+.semester-section th:first-child,
+.semester-section td:first-child {
+    width: 38% !important;
+
     text-align: left !important;
 
-    padding: 10px 8px !important;
-
-    background: #f3f3f3 !important;
-
-    color: #222222 !important;
+    padding-left: 8px !important;
 }
 
-#iiitk-cgpa-extension td {
-    padding: 10px 8px !important;
-
-    border-bottom: 1px solid #eeeeee !important;
-
-    color: #222222 !important;
-
-    background: #ffffff !important;
+.semester-section th:nth-child(2),
+.semester-section td:nth-child(2) {
+    width: 19% !important;
 }
 
-#iiitk-cgpa-extension .sgpa-value {
-    font-weight: bold !important;
+.semester-section th:nth-child(3),
+.semester-section td:nth-child(3) {
+    width: 22% !important;
 }
 
-#iiitk-cgpa-extension .cgpa-footer {
-    padding: 12px 18px !important;
-
-    border-top: 1px solid #eeeeee !important;
-
-    color: #888888 !important;
-
-    font-size: 11px !important;
+.semester-section th:nth-child(4),
+.semester-section td:nth-child(4) {
+    width: 21% !important;
 }
+
+.semester-section tr:last-child td {
+    border-bottom: none !important;
+}
+
+
+/* =========================================================
+   SGPA
+   ========================================================= */
+
+.sgpa-value {
+    color: #1769AA !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   5. ONGOING SEMESTER
+   ========================================================= */
+
+.semester-status {
+    display: inline-block !important;
+
+    margin-top: 3px !important;
+
+    padding: 3px 7px !important;
+
+    background: #FFF1C7 !important;
+
+    border: 1px solid #F0C75E !important;
+
+    border-radius: 5px !important;
+
+    color: #9A6200 !important;
+
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   6. SEMESTER STATUS
+   ========================================================= */
+
+.cgpa-validation {
+    margin: 0 13px 13px 13px !important;
+
+    background: #FFFFFF !important;
+
+    border: 1px solid #B9D2E7 !important;
+
+    border-radius: 10px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 2px 7px rgba(23, 59, 103, 0.08) !important;
+}
+
+.cgpa-validation h3 {
+    margin: 0 !important;
+
+    padding: 11px 12px !important;
+
+    background: #DCEBFA !important;
+
+    color: #173B67 !important;
+
+    border-bottom: 1px solid #B9D2E7 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 700 !important;
+}
+
+.validation-row {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 8px 10px !important;
+
+    background: #FFFFFF !important;
+
+    border-bottom: 1px solid #E4ECF3 !important;
+
+    font-size: 10px !important;
+}
+
+.validation-row:last-child {
+    border-bottom: none !important;
+}
+
+.validation-row span:first-child {
+    color: #243B53 !important;
+
+    font-weight: 600 !important;
+}
+
+.validation-row span:last-child {
+    padding: 3px 7px !important;
+
+    border-radius: 5px !important;
+
+    color: #2E7D52 !important;
+
+    background: #E2F5E9 !important;
+
+    border: 1px solid #A9D9BA !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   7. FOOTER
+   ========================================================= */
+
+.cgpa-footer {
+    margin: 0 13px !important;
+
+    padding: 10px 3px !important;
+
+    color: #62788C !important;
+
+    font-size: 10px !important;
+
+    line-height: 1.4 !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   8. IMPORTANT RED NOTE
+   ========================================================= */
 
 .cgpa-note {
-    margin-top: 12px !important;
-    padding: 10px 12px !important;
-    font-size: 12px !important;
+    margin: 0 13px 15px 13px !important;
+
+    padding: 11px 11px !important;
+
+    background: #FFF0F1 !important;
+
+    border: 1px solid #FFB3B8 !important;
+
+    border-left: 5px solid #E53935 !important;
+
+    border-radius: 8px !important;
+
+    color: #B71C1C !important;
+
+    font-size: 10px !important;
+
     line-height: 1.5 !important;
-    color: #c62828 !important;
-    background: #fff5f5 !important;
-    border: 1px solid #f1c0c0 !important;
-    border-radius: 6px !important;
+
+    font-weight: 600 !important;
 }
+
+
+/* =========================================================
+   NOTE HIGHLIGHT
+   ========================================================= */
+
+.cgpa-note::first-letter {
+    color: #E53935 !important;
+}
+
+
+/* =========================================================
+   FINAL COLOR HIERARCHY
+
+   HEADER
+   #173B67
+
+   PRIMARY BLUE
+   #1769AA
+
+   SKY BLUE
+   #2496D2
+
+   TEAL
+   #159A9C
+
+   GOLD
+   #D49A24
+
+   GREEN
+   #2E8B57
+
+   RED NOTE
+   #E53935
+
+   BACKGROUND
+   #F5F9FF
+
+   CARDS
+   #FFFFFF
+   ========================================================= */
