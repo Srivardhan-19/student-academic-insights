@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "IIIT Kurnool CGPA Calculator",
+    "version": "1.0.0",
+    "description": "Calculates SGPA and CGPA from the IIIT Kurnool AIMS Course History page.",
+    "permissions": [],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://aims.iiitk.ac.in/aimskurnool/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "style.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}
